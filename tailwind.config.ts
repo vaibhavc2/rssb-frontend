@@ -1,48 +1,14 @@
 import type { Config } from "tailwindcss";
 
+import { nextui } from "@nextui-org/react";
+import defaultTheme from "tailwindcss/defaultTheme";
+
 const config: Config = {
   content: [
-    // "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    // "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    // "./components/**/*.{js,ts,jsx,tsx,mdx}",
-
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
-  sans: [
-    "Inter",
-    "ui-sans-serif",
-    "system-ui",
-    "-apple-system",
-    "system-ui",
-    "Segoe UI",
-    "Roboto",
-    "Helvetica Neue",
-    "Arial",
-    "Noto Sans",
-    "sans-serif",
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji",
-  ],
-  serif: [
-    "Inter",
-    "ui-sans-serif",
-    "system-ui",
-    "-apple-system",
-    "system-ui",
-    "Segoe UI",
-    "Roboto",
-    "Helvetica Neue",
-    "Arial",
-    "Noto Sans",
-    "sans-serif",
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji",
-  ],
+  sans: ["Inter", ...defaultTheme.fontFamily.sans],
   theme: {
     // extend: {
     //   backgroundImage: {
@@ -52,6 +18,7 @@ const config: Config = {
     //   },
     // },
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [nextui()],
 };
 export default config;
