@@ -2,13 +2,13 @@ import Link from "next/link";
 
 type Props = {};
 
-const SignUp = ({}: Props) => {
+const Register = ({}: Props) => {
   return (
     <>
-      <div>SignUp Page</div>
+      <div>Register Page</div>
       <Link href={"/"}>Go to Home</Link>
     </>
   );
 };
 
-export default SignUp;
+export default Register;
