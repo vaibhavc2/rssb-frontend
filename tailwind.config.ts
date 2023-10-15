@@ -1,48 +1,10 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
-  content: [
-    // "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    // "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    // "./components/**/*.{js,ts,jsx,tsx,mdx}",
+const defaultTheme = require("tailwindcss/defaultTheme");
 
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  sans: [
-    "Inter",
-    "ui-sans-serif",
-    "system-ui",
-    "-apple-system",
-    "system-ui",
-    "Segoe UI",
-    "Roboto",
-    "Helvetica Neue",
-    "Arial",
-    "Noto Sans",
-    "sans-serif",
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji",
-  ],
-  serif: [
-    "Inter",
-    "ui-sans-serif",
-    "system-ui",
-    "-apple-system",
-    "system-ui",
-    "Segoe UI",
-    "Roboto",
-    "Helvetica Neue",
-    "Arial",
-    "Noto Sans",
-    "sans-serif",
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji",
-  ],
+const config: Config = {
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  sans: ["Inter", ...defaultTheme.fontFamily.sans],
   theme: {
     // extend: {
     //   backgroundImage: {
