@@ -1,5 +1,8 @@
 "use client";
 
+import { menuItems } from "@/constants";
+import { useDarkClass } from "@/hooks";
+import { useBoundStore } from "@/store";
 import {
   Button,
   Link,
@@ -17,38 +20,23 @@ import { DarkLogo, LightLogo, ThemeChangerButton } from "..";
 
 export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [darkClassHTML, setDarkClassHTML] = useState(false);
+  const [darkLogo, setDarkLogo] = useState(false);
+  const { darkClassHTML, setDarkClassHTML } = useBoundStore((state) => state);
   const { theme } = useTheme();
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Change Theme",
-    "Help & Feedback",
-    "Log Out",
-  ];
-
-  useEffect(() => {
-    setDarkClassHTML(
-      document.getElementsByTagName("html")[0].classList.contains("dark")
-    );
-  }, [theme === "system"]);
+  useDarkClass();
 
   const changeLogo = useCallback(() => {
     if (theme === "system") {
-      if (darkClassHTML) return <DarkLogo />;
-      else return <LightLogo />;
+      if (darkClassHTML) setDarkLogo(true);
+      else setDarkLogo(false);
     } else {
-      if (theme === "dark") return <DarkLogo />;
-      else return <LightLogo />;
+      if (theme === "dark") setDarkLogo(true);
+      else setDarkLogo(false);
     }
   }, [theme, darkClassHTML, setDarkClassHTML]);
+
+  useEffect(changeLogo, [theme]);
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -60,14 +48,14 @@ export default function NavbarComponent() {
 
       <NavbarContent className="pr-3 sm:hidden" justify="center">
         <NavbarBrand>
-          {changeLogo()}
+          {darkLogo ? <DarkLogo /> : <LightLogo />}
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         <NavbarBrand>
-          {changeLogo()}
+          {darkLogo ? <DarkLogo /> : <LightLogo />}
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         <NavbarItem>
