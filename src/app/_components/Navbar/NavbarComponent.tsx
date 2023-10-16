@@ -2,7 +2,6 @@
 
 import { menuItems } from "@/constants";
 import { useDarkClass } from "@/hooks";
-import { useBoundStore } from "@/store";
 import {
   Button,
   Link,
@@ -15,28 +14,18 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import { useTheme } from "next-themes";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DarkLogo, LightLogo, ThemeChangerButton } from "..";
 
 export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [darkLogo, setDarkLogo] = useState(false);
-  const { darkClassHTML, setDarkClassHTML } = useBoundStore((state) => state);
   const { theme } = useTheme();
+  const isDark = useDarkClass();
 
-  useDarkClass();
-
-  const changeLogo = useCallback(() => {
-    if (theme === "system") {
-      if (darkClassHTML) setDarkLogo(true);
-      else setDarkLogo(false);
-    } else {
-      if (theme === "dark") setDarkLogo(true);
-      else setDarkLogo(false);
-    }
-  }, [theme, darkClassHTML, setDarkClassHTML]);
-
-  useEffect(changeLogo, [theme]);
+  useEffect(() => {
+    setDarkLogo(isDark);
+  }, [isDark, theme]);
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>

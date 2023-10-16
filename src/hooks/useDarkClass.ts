@@ -14,4 +14,16 @@ export const useDarkClass = () => {
     }, [darkClassHTML, setDarkClassHTML, theme]),
     [theme === "system"]
   );
+
+  const changeLogo = useCallback(() => {
+    if (theme === "system") {
+      if (darkClassHTML) return true;
+      else return false;
+    } else {
+      if (theme === "dark") return true;
+      else return false;
+    }
+  }, [theme, darkClassHTML, setDarkClassHTML]);
+
+  return changeLogo();
 };
