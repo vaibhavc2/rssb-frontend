@@ -1,7 +1,6 @@
 import { Button as ShadButton } from "@/components/ui/button";
 import { Button as NextButton } from "@nextui-org/button";
 import Link from "next/link";
-import { ThemeChangerButton } from "./_components/ThemeChangerButton";
 
 type Props = {};
 
@@ -20,9 +19,6 @@ const page = ({}: Props) => {
       </div>
       <div className="flex max-w-full justify-around">
         <NextButton>NextUI Button</NextButton>
-      </div>
-      <div className="flex max-w-full justify-around">
-        <ThemeChangerButton />
       </div>
     </div>
   );
