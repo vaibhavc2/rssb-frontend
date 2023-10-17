@@ -1,6 +1,7 @@
 "use client";
 
 import { menuItems } from "@/constants";
+import { useDarkClass } from "@/hooks";
 import {
   Button,
   Link,
@@ -12,32 +13,25 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Logo, ThemeToggler } from "..";
 
-const isBrowser = () => typeof window !== "undefined";
-
 export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [darkLogo, setDarkLogo] = useState(false);
+
   // const { isDark } = useBoundStore((state) => state);
-  const [isDark, setIsDark] = useState(false);
   // useDarkMedia();
-  // const [darkLogo, setDarkLogo] = useState(false);
-  // const [loading, setLoading] = useState(true);
-  // const { theme } = useTheme();
-  // const isDark = useDarkClass();
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   setDarkLogo(isDark);
-  //   // setLoading(false);
-  // }, [isDark, theme]);
+  const { theme } = useTheme();
+  const isDarkClass = useDarkClass();
 
-  // const useDark = ;
-  if (isBrowser()) {
-    useEffect(() => {
-      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }, [window.matchMedia("(prefers-color-scheme: dark)").matches]);
-  }
+  useEffect(() => {
+    setDarkLogo(isDarkClass);
+    setLoading(false);
+  }, [isDarkClass, theme]);
 
   return (
     <Navbar
@@ -59,19 +53,20 @@ export default function NavbarComponent() {
         <NavbarItem className="pt-1">
           <Link href="/">
             <NavbarBrand>
-              <Logo className={isDark ? "" : "hidden"} />
-              <Logo className={isDark ? "hidden invert" : "invert"} />
-              {/* {isDark ? <Logo /> : <Logo className="invert" />} */}
-              {/* {darkLogo ? <DarkLogo /> : <LightLogo />} */}
-              {/* {!loading ? (
-                darkLogo ? (
-                  <DarkLogo />
-                ) : (
-                  <LightLogo />
-                )
-              ) : (
-                <div className="w-[2.8rem]"></div>
-              )} */}
+              {/* <Logo className={isDark || darkLogo ? "" : "hidden"} />
+              <Logo
+                className={isDark || darkLogo ? "hidden invert" : "invert"}
+              /> */}
+              {/* {darkLogo ? <Logo /> : <Logo className="invert" />} */}
+              <div className="w-[2.8rem]">
+                {!loading ? (
+                  darkLogo ? (
+                    <Logo />
+                  ) : (
+                    <Logo className="invert" />
+                  )
+                ) : null}
+              </div>
             </NavbarBrand>
           </Link>
         </NavbarItem>
