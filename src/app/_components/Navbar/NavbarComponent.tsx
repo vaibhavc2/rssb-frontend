@@ -32,7 +32,7 @@ export default function NavbarComponent() {
       onMenuOpenChange={setIsMenuOpen}
       className="h-20 sm:h-24"
     >
-      <NavLogo darkLogo={darkLogo} />
+      <NavLogo darkLogo={darkLogo} isMenuOpen={isMenuOpen} />
 
       <NavDashLinks />
 
