@@ -1,7 +1,8 @@
-import { HTMLDarkClass } from "@/types";
+import { DarkMedia, HTMLDarkClass } from "@/types";
 import { create } from "zustand";
-import { htmlDarkClassSlice } from "./features";
+import { darkMediaSlice, htmlDarkClassSlice } from "./features";
 
-export const useBoundStore = create<HTMLDarkClass>((...a) => ({
+export const useBoundStore = create<HTMLDarkClass & DarkMedia>((...a) => ({
   ...htmlDarkClassSlice(...a),
+  ...darkMediaSlice(...a),
 }));

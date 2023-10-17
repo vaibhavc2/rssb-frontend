@@ -1,6 +1,5 @@
-import DarkLogo from "./Logos/DarkLogo";
-import LightLogo from "./Logos/LightLogo";
+import Logo from "./Logo/Logo";
 import NavbarComponent from "./Navbar/NavbarComponent";
-import { ThemeChangerButton } from "./ThemeChangers/ThemeChangerButton";
+import { ThemeToggler } from "./ThemeChangers/ThemeToggler";
 
-export { DarkLogo, LightLogo, NavbarComponent, ThemeChangerButton };
+export { Logo, NavbarComponent, ThemeToggler };

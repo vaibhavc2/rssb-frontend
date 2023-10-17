@@ -1,7 +1,6 @@
 "use client";
 
 import { menuItems } from "@/constants";
-import { useDarkClass } from "@/hooks";
 import {
   Button,
   Link,
@@ -13,40 +12,77 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { DarkLogo, LightLogo, ThemeChangerButton } from "..";
+import { Logo, ThemeToggler } from "..";
+
+const isBrowser = () => typeof window !== "undefined";
 
 export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [darkLogo, setDarkLogo] = useState(false);
-  const { theme } = useTheme();
-  const isDark = useDarkClass();
+  // const { isDark } = useBoundStore((state) => state);
+  const [isDark, setIsDark] = useState(false);
+  // useDarkMedia();
+  // const [darkLogo, setDarkLogo] = useState(false);
+  // const [loading, setLoading] = useState(true);
+  // const { theme } = useTheme();
+  // const isDark = useDarkClass();
 
-  useEffect(() => {
-    setDarkLogo(isDark);
-  }, [isDark, theme]);
+  // useEffect(() => {
+  //   setDarkLogo(isDark);
+  //   // setLoading(false);
+  // }, [isDark, theme]);
+
+  // const useDark = ;
+  if (isBrowser()) {
+    useEffect(() => {
+      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }, [window.matchMedia("(prefers-color-scheme: dark)").matches]);
+  }
 
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      isBordered
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      className="py-1"
+    >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
 
-      <NavbarContent className="pr-3 sm:hidden" justify="center">
-        <NavbarBrand>
-          {darkLogo ? <DarkLogo /> : <LightLogo />}
-          <p className="font-bold text-inherit">ACME</p>
-        </NavbarBrand>
+      <NavbarContent
+        className="invisible flex pr-3 sm:visible"
+        justify="center"
+      >
+        <NavbarItem className="pt-1">
+          <Link href="/">
+            <NavbarBrand>
+              <Logo className={isDark ? "" : "hidden"} />
+              <Logo className={isDark ? "hidden invert" : "invert"} />
+              {/* {isDark ? <Logo /> : <Logo className="invert" />} */}
+              {/* {darkLogo ? <DarkLogo /> : <LightLogo />} */}
+              {/* {!loading ? (
+                darkLogo ? (
+                  <DarkLogo />
+                ) : (
+                  <LightLogo />
+                )
+              ) : (
+                <div className="w-[2.8rem]"></div>
+              )} */}
+            </NavbarBrand>
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link href="/">
+            <h1 className="pb-1 text-2xl font-bold">RSSB.</h1>
+          </Link>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
-        <NavbarBrand>
-          {darkLogo ? <DarkLogo /> : <LightLogo />}
-          <p className="font-bold text-inherit">ACME</p>
-        </NavbarBrand>
         <NavbarItem>
           <Link color="foreground" href="#">
             Features
@@ -62,19 +98,19 @@ export default function NavbarComponent() {
             Integrations
           </Link>
         </NavbarItem>
-        <NavbarItem className="flex sm:hidden">
-          <ThemeChangerButton />
+        {/* <NavbarItem className="flex sm:hidden">
+          <ThemeToggler />
+        </NavbarItem> */}
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden sm:flex">
+          <ThemeToggler />
         </NavbarItem>
       </NavbarContent>
 
       <NavbarContent justify="end">
         <NavbarItem className="hidden sm:flex">
-          <ThemeChangerButton />
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
           <Link href="/login">Login</Link>
         </NavbarItem>
         <NavbarItem>
