@@ -1,10 +1,13 @@
 import { NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
-import { Logo } from "../..";
+import { DarkLogo, Logo } from "../..";
 
-type Props = { darkLogo: boolean; isMenuOpen: boolean };
+type Props = { isMenuOpen: boolean };
 
-const NavLogo = ({ darkLogo, isMenuOpen }: Props) => {
+const NavLogo = ({ isMenuOpen }: Props) => {
+  const { theme } = useTheme();
+
   return (
     <>
       {!isMenuOpen ? (
@@ -13,21 +16,7 @@ const NavLogo = ({ darkLogo, isMenuOpen }: Props) => {
             <Link href="/">
               <NavbarBrand>
                 <div className="w-[3rem] sm:w-[4rem]">
-                  {darkLogo ? (
-                    // <Logo className="invert-[20%]" />
-                    <Logo />
-                  ) : (
-                    // <Logo className="invert-[90%]" />
-                    <Logo className="invert" />
-                  )}
-
-                  {/* {!loading ? (
-                darkLogo ? (
-                  <Logo />
-                ) : (
-                  <Logo className="invert" />
-                )
-              ) : null} */}
+                  {theme === "light" ? <Logo /> : <DarkLogo />}
                 </div>
                 <h1 className="ml-3 hidden pb-1 text-4xl font-bold sm:block">
                   RSSB.

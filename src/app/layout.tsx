@@ -43,8 +43,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          // enableSystem
           disableTransitionOnChange
         >
           <NavbarComponent />

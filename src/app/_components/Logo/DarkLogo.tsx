@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Img from "/public/logo.png";
+import Img from "/public/logo-dark.png";
 
 type Props = {
   className?: string;
