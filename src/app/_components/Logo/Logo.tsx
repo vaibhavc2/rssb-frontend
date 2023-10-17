@@ -11,8 +11,8 @@ const Logo = ({ className }: Props) => {
     <Image
       src={Img}
       alt="RSSB"
-      width={45}
-      height={45}
+      width={60}
+      height={60}
       // className={cn("", className)}
       className={className}
     />
