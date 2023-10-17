@@ -14,9 +14,11 @@ const NavLogo = ({ darkLogo, isMenuOpen }: Props) => {
               <NavbarBrand>
                 <div className="w-[3rem] sm:w-[4rem]">
                   {darkLogo ? (
-                    <Logo className="invert-[20%]" />
+                    // <Logo className="invert-[20%]" />
+                    <Logo />
                   ) : (
-                    <Logo className="invert-[90%]" />
+                    // <Logo className="invert-[90%]" />
+                    <Logo className="invert" />
                   )}
 
                   {/* {!loading ? (

@@ -2,7 +2,6 @@ import { menuItems } from "@/constants";
 import { NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import Link from "next/link";
 import { useCallback } from "react";
-import { ThemeChangerButton } from "../../ThemeChangers/ThemeChangerButton";
 
 const MobileNavMenu = () => {
   const displayMenuItems = useCallback(
@@ -24,11 +23,7 @@ const MobileNavMenu = () => {
                 item.title === "Log Out" ? "text-red-600" : "foreground"
               }`}
             >
-              {item.title === "Change Theme" ? (
-                <ThemeChangerButton />
-              ) : (
-                item.title
-              )}
+              {item.title}
             </div>
           )}
         </NavbarMenuItem>

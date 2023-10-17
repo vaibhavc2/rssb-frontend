@@ -36,7 +36,7 @@ export default function NavbarComponent() {
 
       <NavDashLinks />
 
-      <NavButtons />
+      <NavButtons isMenuOpen={isMenuOpen} />
 
       <NavbarContent className="lg:hidden" justify="end">
         <NavbarMenuToggle
