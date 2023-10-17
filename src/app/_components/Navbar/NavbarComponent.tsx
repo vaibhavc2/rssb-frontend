@@ -1,18 +1,11 @@
 "use client";
 
 import { useDarkClass } from "@/hooks";
-import {
-  Button,
-  Navbar,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenuToggle,
-} from "@nextui-org/react";
+import { Navbar, NavbarContent, NavbarMenuToggle } from "@nextui-org/react";
 import { useTheme } from "next-themes";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ThemeToggler } from "..";
 import MobileNavMenu from "./nav/MobileNavMenu";
+import NavButtons from "./nav/NavButtons";
 import NavDashLinks from "./nav/NavDashLinks";
 import NavLogo from "./nav/NavLogo";
 
@@ -43,27 +36,7 @@ export default function NavbarComponent() {
 
       <NavDashLinks />
 
-      <NavbarContent justify="end" className="hidden justify-around lg:flex">
-        <NavbarItem className="mx-5">
-          <ThemeToggler />
-        </NavbarItem>
-        <NavbarItem>
-          <Link href="/login" className="text-xl font-semibold">
-            Login
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            as={Link}
-            color="warning"
-            href="/register"
-            variant="flat"
-            className="ml-3 p-6 pb-7 text-xl"
-          >
-            Register
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      <NavButtons />
 
       <NavbarContent className="lg:hidden" justify="end">
         <NavbarMenuToggle
