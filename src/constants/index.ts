@@ -1,3 +1,4 @@
-import { menuItems } from "./menuItems";
+import { menuItems } from "./nav/menuItems";
+import { navItems } from "./nav/navItems";
 
-export { menuItems };
+export { menuItems, navItems };

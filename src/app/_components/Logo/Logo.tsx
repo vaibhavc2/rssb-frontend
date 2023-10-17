@@ -13,8 +13,9 @@ const Logo = ({ className }: Props) => {
       alt="RSSB"
       width={60}
       height={60}
-      // className={cn("", className)}
       className={className}
+      priority
+      // className={cn("", className)}
     />
   );
 };
