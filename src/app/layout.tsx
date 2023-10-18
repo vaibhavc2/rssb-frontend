@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { fontSans } from "@/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -36,9 +36,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          // enableSystem
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
+          storageKey="theme"
         >
           {children}
         </ThemeProvider>

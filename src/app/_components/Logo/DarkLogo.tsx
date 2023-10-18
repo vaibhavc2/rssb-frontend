@@ -1,12 +1,17 @@
 import Image from "next/image";
 import Img from "/public/logo-dark.png";
 
-const Logo = ({ className }: { className?: string }) => {
+const DarkLogo = () => {
   return (
-    <div className={className}>
-      <Image src={Img} alt="RSSB" width={60} height={60} priority />
-    </div>
+    <Image
+      src={Img}
+      alt="RSSB"
+      width={60}
+      height={60}
+      priority
+      className="hidden dark:block"
+    />
   );
 };
 
-export default Logo;
+export default DarkLogo;

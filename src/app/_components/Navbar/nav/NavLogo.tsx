@@ -1,6 +1,6 @@
 import { NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 import Link from "next/link";
-import { ImgLogo } from "../..";
+import { DarkLogo, Logo } from "../..";
 import TypedLogo from "../../Logo/TypedLogo";
 
 type Props = { isMenuOpen: boolean };
@@ -14,11 +14,8 @@ const NavLogo = ({ isMenuOpen }: Props) => {
             <Link href="/">
               <NavbarBrand>
                 <div className="w-[3rem] sm:w-[4rem]">
-                  {/* {theme === "light" ? <Logo /> : <Logo className="invert" />} */}
-
-                  {/* <Logo className={`${theme === "light" ? "" : "hidden"}`} />
-                  <DarkLogo className={`${theme === "dark" ? "" : "hidden"}`} /> */}
-                  <ImgLogo />
+                  <Logo />
+                  <DarkLogo />
                 </div>
                 <TypedLogo
                   short
