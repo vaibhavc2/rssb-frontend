@@ -8,9 +8,9 @@ const NavButtons = ({ isMenuOpen }: Props) => {
   return (
     <NavbarContent
       justify={`${isMenuOpen ? "start" : "end"}`}
-      className="ml-[-3rem] flex justify-between"
+      className={`flex justify-between ${isMenuOpen ? "" : "ml-[-3rem]"}`}
     >
-      <NavbarItem className={`mr-5 ${isMenuOpen ? "" : "hidden lg:flex"}`}>
+      <NavbarItem className={`${isMenuOpen ? "" : "mr-5 hidden lg:flex"}`}>
         <ThemeToggler />
       </NavbarItem>
 

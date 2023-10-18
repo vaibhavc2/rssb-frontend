@@ -1,34 +1,27 @@
 "use client";
 
-import { Navbar, NavbarContent, NavbarMenuToggle } from "@nextui-org/react";
+import { useScrollTop } from "@/hooks";
+import {
+  NavbarContent,
+  NavbarMenuToggle,
+  Navbar as NavbarUI,
+} from "@nextui-org/react";
 import { useState } from "react";
 import MobileNavMenu from "./nav/MobileNavMenu";
 import NavButtons from "./nav/NavButtons";
 import NavDashLinks from "./nav/NavDashLinks";
 import NavLogo from "./nav/NavLogo";
 
-export default function NavbarComponent() {
+export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [darkLogo, setDarkLogo] = useState(false);
-
-  // const { isDark } = useBoundStore((state) => state);
-  // useDarkMedia();
-  // const [loading, setLoading] = useState(true);
-
-  // const { theme } = useTheme();
-  // const isDarkClass = useDarkClass();
-
-  // useEffect(() => {
-  //   setDarkLogo(isDarkClass);
-  //   // setLoading(false);
-  // }, [isDarkClass, theme]);
+  const scrolled = useScrollTop();
 
   return (
-    <Navbar
-      isBordered
+    <NavbarUI
+      isBordered={scrolled ? true : false}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      className="h-20 sm:h-24"
+      className="z-50 h-20 sm:h-24"
     >
       <NavLogo isMenuOpen={isMenuOpen} />
 
@@ -43,6 +36,6 @@ export default function NavbarComponent() {
       </NavbarContent>
 
       <MobileNavMenu />
-    </Navbar>
+    </NavbarUI>
   );
 }
