@@ -1,9 +1,8 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import { fontSans } from "@/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 import { ReactNode } from "react";
-import { NavbarComponent } from "./_components";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,12 +24,6 @@ export const metadata: Metadata = {
   },
 };
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -47,7 +40,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           // enableSystem
           disableTransitionOnChange
         >
-          <NavbarComponent />
           {children}
         </ThemeProvider>
       </body>
