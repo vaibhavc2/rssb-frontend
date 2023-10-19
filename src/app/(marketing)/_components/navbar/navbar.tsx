@@ -7,10 +7,10 @@ import {
   Navbar as NavbarUI,
 } from "@nextui-org/react";
 import { useState } from "react";
-import MobileNavMenu from "./nav/MobileNavMenu";
-import NavButtons from "./nav/NavButtons";
-import NavDashLinks from "./nav/NavDashLinks";
-import NavLogo from "./nav/NavLogo";
+import MobileNavMenu from "./nav/mobile-nav-menu";
+import NavButtons from "./nav/nav-buttons";
+import NavDashLinks from "./nav/nav-dash-links";
+import NavLogo from "./nav/nav-logo";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

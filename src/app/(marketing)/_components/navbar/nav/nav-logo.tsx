@@ -1,7 +1,6 @@
+import { DarkLogo, Logo, TypedLogo } from "@/components/custom/logo";
 import { NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 import Link from "next/link";
-import { DarkLogo, Logo } from "../..";
-import TypedLogo from "../../Logo/TypedLogo";
 
 type Props = { isMenuOpen: boolean };
 

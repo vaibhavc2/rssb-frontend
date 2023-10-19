@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ThemeProvider } from "@/components/providers";
 import { fontSans } from "@/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";

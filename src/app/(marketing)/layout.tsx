@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Footer, Navbar } from "../_components";
+import { Footer, Navbar } from "./_components";
 
 // export const metadata: Metadata = {
 //   title:

@@ -1,5 +1,5 @@
-import TypedLogo from "../Logo/TypedLogo";
-import LeftFooter from "./comp/LeftFooter";
+import { TypedLogo } from "@/components/custom/logo";
+import LeftFooter from "./comp/left-footer";
 
 const Footer = () => {
   return (

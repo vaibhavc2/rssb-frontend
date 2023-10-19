@@ -1,6 +1,6 @@
+import { ThemeToggler } from "@/components/custom/theme";
 import { Button, NavbarContent, NavbarItem } from "@nextui-org/react";
 import Link from "next/link";
-import { ThemeToggler } from "../..";
 
 type Props = { isMenuOpen: boolean };
 
