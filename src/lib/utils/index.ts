@@ -1,5 +1,5 @@
 import { cn } from "./cn";
 import { getErrorMessage } from "./error";
-import { fetchJSON } from "./fetch";
+import { fetchBlob, fetchJson } from "./fetch";
 
-export { cn, fetchJSON, getErrorMessage };
+export { cn, fetchBlob, fetchJson, getErrorMessage };
