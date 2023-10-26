@@ -1,4 +1,4 @@
-import { navItems } from "@/constants";
+import { navItems } from "@/constants/nav";
 import { NavbarContent, NavbarItem } from "@nextui-org/react";
 import Link from "next/link";
 import { useCallback } from "react";
