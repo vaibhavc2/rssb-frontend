@@ -1,3 +1,4 @@
+import { User, UserLogin } from "./auth/User";
 import { Env } from "./env/Env";
 import { EnvStrict } from "./env/EnvStrict";
 import { MenuItem } from "./nav/MenuItem";
@@ -14,4 +15,6 @@ export type {
   HTMLDarkClass,
   MenuItem,
   NavItem,
+  User,
+  UserLogin,
 };

@@ -1,9 +1,5 @@
-import { getConfig, getSanitizedConfig } from "@/lib/helpers";
+import { getConfig, getSanitizedConfig } from "@/lib/helpers/env";
 
 const config = getConfig();
 
-const sanitizedConfig = getSanitizedConfig(config);
-
-const EnvVariables = sanitizedConfig;
-
-export default EnvVariables;
+export const sanitizedConfig = getSanitizedConfig(config);
