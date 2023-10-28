@@ -1,4 +1,4 @@
-import { getConfig, getSanitizedConfig } from "@/lib/helpers/env";
+import { getConfig, getSanitizedConfig } from "@/lib/helpers";
 
 const config = getConfig();
 

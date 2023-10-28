@@ -1,14 +1,18 @@
 import { APPWRITE_PROJECT_ID, APPWRITE_URL } from "@/config";
+import { appwriteError } from "@/lib/helpers";
+import { getFuncName } from "@/lib/utils";
 import { User, UserLogin } from "@/types";
 import { Account, Client, ID } from "appwrite";
 
-export class AuthService {
+class AuthService {
   client = new Client();
-  account;
+  account: Account;
+  readonly clsName: string;
 
   constructor() {
     this.client.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT_ID);
     this.account = new Account(this.client);
+    this.clsName = AuthService.name;
   }
 
   async createAccount({ email, password, name }: User) {
@@ -24,9 +28,8 @@ export class AuthService {
         return this.login({ email, password });
       } else return userAccount;
     } catch (error) {
-      console.log("Appwrite service :: userAccount :: ERROR ::", error);
-      return false;
-      // throw error;
+      // return appwriteError(AuthService.name, this.createAccount.name, error);
+      return appwriteError(this.clsName, getFuncName(), error);
     }
   }
 
@@ -34,36 +37,33 @@ export class AuthService {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
-      console.log("Appwrite service :: login :: ERROR ::", error);
-      return false;
-      // throw error;
+      return appwriteError(this.clsName, getFuncName(), error);
     }
+  }
 
-    // return null;
+  async isLoggedIn() {
+    try {
+      const data = await this.getCurrentUser();
+      return Boolean(data);
+    } catch (error) {
+      return appwriteError(this.clsName, getFuncName(), error);
+    }
   }
 
   async getCurrentUser() {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("Appwrite service :: getCurrentUser :: ERROR ::", error);
-      return false;
-      // throw error;
+      return appwriteError(this.clsName, getFuncName(), error);
     }
-
-    // return null;
   }
 
   async logout() {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      console.log("Appwrite service :: logout :: ERROR ::", error);
-      return false;
-      // throw error;
+      return appwriteError(this.clsName, getFuncName(), error);
     }
-
-    return null;
   }
 }
 
