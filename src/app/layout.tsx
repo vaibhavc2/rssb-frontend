@@ -1,3 +1,5 @@
+import Footer from "@/components/custom/footer";
+import Navbar from "@/components/custom/navbar";
 import { ThemeProvider } from "@/components/providers";
 import { fontSans } from "@/fonts";
 import { cn } from "@/lib/utils";
@@ -41,7 +43,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           disableTransitionOnChange
           storageKey="theme"
         >
-          {children}
+          <div className="flex min-h-screen flex-col justify-between">
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
