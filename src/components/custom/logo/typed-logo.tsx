@@ -1,4 +1,4 @@
-import { fontSerif } from "@/fonts";
+import { Poppins } from "@/fonts";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -12,7 +12,7 @@ const TypedLogo = ({ short, className }: Props) => {
       className={`${cn(
         "block text-center font-semibold",
         className,
-        fontSerif.className
+        Poppins.className
       )}`}
     >
       {short ? "RSSB." : "RSSB Sewa."}

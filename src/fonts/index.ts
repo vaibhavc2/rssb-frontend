@@ -1,4 +1,3 @@
-import { fontSans } from "./font-sans";
-import { fontSerif } from "./font-serif";
-
-export { fontSans, fontSerif };
+export { Inter } from "./inter";
+export { Poppins } from "./poppins";
+export { Roboto } from "./roboto";

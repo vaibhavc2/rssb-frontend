@@ -1,7 +1,7 @@
 import Footer from "@/components/custom/footer";
 import Navbar from "@/components/custom/navbar";
 import { ThemeProvider } from "@/components/providers";
-import { fontSans } from "@/fonts";
+import { Inter } from "@/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          Inter.className
         )}
       >
         <ThemeProvider
