@@ -8,4 +8,9 @@ export const loginSlice: StateCreator<IsLoggedIn> = (set) => ({
       isLoggedIn: arg,
     }));
   },
+  toggleIsLoggedIn: () => {
+    set((prev) => ({
+      isLoggedIn: !prev,
+    }));
+  },
 });
