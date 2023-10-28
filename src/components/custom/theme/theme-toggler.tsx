@@ -4,13 +4,13 @@ import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useBoundStore } from "@/store";
+import useStore from "@/store/store";
 import { useTheme } from "next-themes";
 import { useCallback } from "react";
 
 export function ThemeToggler({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
-  const { darkClassHTML } = useBoundStore((state) => state);
+  const { darkClassHTML } = useStore((state) => state);
 
   const changeTheme = useCallback(() => {
     if (theme === "system") {

@@ -6,6 +6,7 @@ import { NavItem } from "./nav/NavItem";
 import { GithubResponse } from "./res/GithubResponse";
 import { DarkMedia } from "./store/DarkMedia";
 import { HTMLDarkClass } from "./store/HTMLDarkClass";
+import { IsLoggedIn } from "./store/IsLoggedIn";
 
 export type {
   DarkMedia,
@@ -13,6 +14,7 @@ export type {
   EnvStrict,
   GithubResponse,
   HTMLDarkClass,
+  IsLoggedIn,
   MenuItem,
   NavItem,
   User,
