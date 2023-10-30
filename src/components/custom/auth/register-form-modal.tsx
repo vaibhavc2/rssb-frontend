@@ -34,7 +34,7 @@ const RegisterFormModal = ({ isOpen, onOpenChange }: Props) => {
               <Input
                 autoFocus
                 endContent={
-                  <ProfileIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+                  <UserIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
                 }
                 label="Name"
                 placeholder="Enter your name"
@@ -42,7 +42,7 @@ const RegisterFormModal = ({ isOpen, onOpenChange }: Props) => {
               />
               <Input
                 endContent={
-                  <UserIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+                  <ProfileIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
                 }
                 label="Username"
                 placeholder="Enter your username"

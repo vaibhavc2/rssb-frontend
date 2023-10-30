@@ -12,7 +12,7 @@ const Login = () => {
 
   return (
     <MainContainer>
-      <Heading>Login</Heading>
+      <Heading>Sign In</Heading>
 
       {/* //TODO: show Form in a BackDrop */}
       {/* {showForm ? <LoginForm /> : <AuthCard setShowForm={setShowForm} />} */}

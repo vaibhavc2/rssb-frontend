@@ -1,4 +1,6 @@
 import { LockIcon, MailIcon } from "@/components/icons";
+import { LoginFormSchema } from "@/models";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
   Checkbox,
@@ -10,13 +12,33 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 type Props = {
   isOpen: boolean;
   onOpenChange: () => void;
 };
 
+type FormInput = z.infer<typeof LoginFormSchema>;
+
 const LoginFormModal = ({ isOpen, onOpenChange }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInput>({
+    resolver: zodResolver(LoginFormSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
+
+  function onSubmit(values: FormInput) {
+    console.log(values);
+  }
+
   return (
     <Modal
       backdrop="blur"
@@ -37,10 +59,16 @@ const LoginFormModal = ({ isOpen, onOpenChange }: Props) => {
                 endContent={
                   <MailIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
                 }
-                label="Email"
-                placeholder="Enter your email"
+                label="Email or Username"
+                placeholder="Enter your email or username"
                 variant="bordered"
+                {...register("username")}
               />
+              {errors.username?.message && (
+                <p className="text-sm text-danger-500">
+                  {errors.username?.message}
+                </p>
+              )}
               <Input
                 endContent={
                   <LockIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
@@ -49,7 +77,13 @@ const LoginFormModal = ({ isOpen, onOpenChange }: Props) => {
                 placeholder="Enter your password"
                 type="password"
                 variant="bordered"
+                {...register("password")}
               />
+              {errors.password?.message && (
+                <p className="text-sm text-danger-500">
+                  {errors.password?.message}
+                </p>
+              )}
               <div className="flex justify-between px-1 py-2">
                 <Checkbox
                   classNames={{
@@ -67,7 +101,11 @@ const LoginFormModal = ({ isOpen, onOpenChange }: Props) => {
               <Button color="danger" variant="flat" onPress={onClose}>
                 Close
               </Button>
-              <Button color="primary" onPress={onClose}>
+              <Button
+                color="primary"
+                type="submit"
+                onSubmit={handleSubmit((values) => onSubmit(values))}
+              >
                 Sign in
               </Button>
             </ModalFooter>
