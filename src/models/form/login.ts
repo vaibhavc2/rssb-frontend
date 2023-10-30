@@ -5,5 +5,7 @@ export const LoginFormSchema = z.object({
     z.string().regex(/^[a-z\d]+_?[a-z\d]+$/, {
       message: "Enter a valid username or email-id.",
     }) || z.string().email(),
-  password: z.string(),
+  password: z.string().min(6, {
+    message: "Enter atleast 6 characters.",
+  }),
 });
