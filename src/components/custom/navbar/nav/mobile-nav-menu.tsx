@@ -1,10 +1,10 @@
 import { menuItems } from "@/constants/nav";
 import { NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import Link from "next/link";
-import { useCallback } from "react";
+import { useMemo } from "react";
 
 const MobileNavMenu = () => {
-  const displayMenuItems = useCallback(
+  const displayMenuItems = useMemo(
     () =>
       menuItems.map((item, index) => (
         <NavbarMenuItem key={`${item.title}-${index}`}>
@@ -30,6 +30,6 @@ const MobileNavMenu = () => {
       )),
     [menuItems]
   );
-  return <NavbarMenu className="pt-16">{displayMenuItems()}</NavbarMenu>;
+  return <NavbarMenu className="pt-16">{displayMenuItems}</NavbarMenu>;
 };
 export default MobileNavMenu;
