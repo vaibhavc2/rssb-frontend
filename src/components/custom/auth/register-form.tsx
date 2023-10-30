@@ -17,8 +17,6 @@ import { useForm } from "react-hook-form";
 
 import { RegisterFormSchema } from "@/models";
 // import { authService } from "@/services/appwrite/auth";
-import useBoundStore from "@/store/store";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type FormInput = z.infer<typeof RegisterFormSchema>;
@@ -27,6 +25,7 @@ export default function RegisterForm() {
   const form = useForm<FormInput>({
     resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
+      name: "",
       username: "",
       email: "",
       password: "",
@@ -34,9 +33,9 @@ export default function RegisterForm() {
   });
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const { setIsLoggedIn } = useBoundStore();
+  // const { setIsLoggedIn } = useBoundStore();
 
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(
     // useCallback(() => {
@@ -54,7 +53,7 @@ export default function RegisterForm() {
   );
 
   function onSubmit(values: FormInput) {
-    // console.log(values);
+    console.log(values);
   }
 
   // const signup = async () => {
