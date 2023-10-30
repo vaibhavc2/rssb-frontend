@@ -1,15 +1,23 @@
-import { LockIcon, MailIcon } from "@/components/icons";
+import { LockIcon, UserIcon } from "@/components/icons";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+// import { Input } from "@/components/ui/input";
 import { LoginFormSchema } from "@/models";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
   Checkbox,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Input as NextInput,
 } from "@nextui-org/react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -23,11 +31,7 @@ type Props = {
 type FormInput = z.infer<typeof LoginFormSchema>;
 
 const LoginFormModal = ({ isOpen, onOpenChange }: Props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormInput>({
+  const form = useForm<FormInput>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       username: "",
@@ -53,62 +57,77 @@ const LoginFormModal = ({ isOpen, onOpenChange }: Props) => {
             <ModalHeader className="flex flex-col gap-1 text-xl">
               Log in
             </ModalHeader>
-            <ModalBody>
-              <Input
-                autoFocus
-                endContent={
-                  <MailIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
-                }
-                label="Email or Username"
-                placeholder="Enter your email or username"
-                variant="bordered"
-                {...register("username")}
-              />
-              {errors.username?.message && (
-                <p className="text-sm text-danger-500">
-                  {errors.username?.message}
-                </p>
-              )}
-              <Input
-                endContent={
-                  <LockIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
-                }
-                label="Password"
-                placeholder="Enter your password"
-                type="password"
-                variant="bordered"
-                {...register("password")}
-              />
-              {errors.password?.message && (
-                <p className="text-sm text-danger-500">
-                  {errors.password?.message}
-                </p>
-              )}
-              <div className="flex justify-between px-1 py-2">
-                <Checkbox
-                  classNames={{
-                    label: "text-small",
-                  }}
-                >
-                  Remember me
-                </Checkbox>
-                <Link href="#" className="text-sm text-primary-500">
-                  Forgot password?
-                </Link>
-              </div>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="flat" onPress={onClose}>
-                Close
-              </Button>
-              <Button
-                color="primary"
-                type="submit"
-                onSubmit={handleSubmit((values) => onSubmit(values))}
-              >
-                Sign in
-              </Button>
-            </ModalFooter>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <ModalBody>
+                  <>
+                    <FormField
+                      control={form.control}
+                      name="username"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <NextInput
+                              autoFocus
+                              endContent={
+                                <UserIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+                              }
+                              label="Username or Email"
+                              placeholder="Enter your username or email"
+                              variant="bordered"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <NextInput
+                              label="Password"
+                              placeholder="Enter your password"
+                              type="password"
+                              variant="bordered"
+                              endContent={
+                                <LockIcon className="pointer-events-none flex-shrink-0 text-2xl text-default-400" />
+                              }
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="flex justify-between px-1 py-2">
+                      <Checkbox
+                        classNames={{
+                          label: "text-small",
+                        }}
+                      >
+                        Remember me
+                      </Checkbox>
+                      <Link href="#" className="text-sm text-primary-500">
+                        Forgot password?
+                      </Link>
+                    </div>
+                  </>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="flat" onPress={onClose}>
+                    Close
+                  </Button>
+                  <Button color="primary" type="submit">
+                    Sign in
+                  </Button>
+                </ModalFooter>
+              </form>
+            </Form>
           </>
         )}
       </ModalContent>
