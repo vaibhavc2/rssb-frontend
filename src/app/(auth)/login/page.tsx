@@ -1,28 +1,30 @@
 "use client";
 
-import { AuthCard, LoginForm } from "@/components/custom/auth";
+import { AuthCard, LoginFormModal } from "@/components/custom/auth";
 import Heading from "@/components/custom/heading";
 import MainContainer from "@/components/custom/main-container";
+import { useDisclosure } from "@nextui-org/react";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
 const Login = () => {
-  const [showForm, setShowForm] = useState(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <MainContainer>
       <Heading>Login</Heading>
 
       {/* //TODO: show Form in a BackDrop */}
-      {showForm ? <LoginForm /> : <AuthCard setShowForm={setShowForm} />}
+      {/* {showForm ? <LoginForm /> : <AuthCard setShowForm={setShowForm} />} */}
+      <AuthCard onOpen={onOpen} />
+      <LoginFormModal isOpen={isOpen} onOpenChange={onOpenChange} />
 
       <div className="text-sm">
         <p>
           Don't have an account?{" "}
           <Link
             href={"/register"}
-            className="ml-1 text-yellow-200 transition-all hover:underline"
+            className="ml-1 text-yellow-700 transition-all hover:underline dark:text-yellow-200"
           >
             Register
             <MoveRight className="inline-block scale-50" />

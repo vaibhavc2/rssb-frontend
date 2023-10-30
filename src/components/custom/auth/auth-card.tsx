@@ -1,20 +1,23 @@
-import { Button } from "@/components/ui/button";
+import { Button, Card, CardBody } from "@nextui-org/react";
 import { MoveRight } from "lucide-react";
 import { OAuth } from ".";
 
-const AuthCard = ({
-  setShowForm,
-}: {
-  setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const AuthCard = ({ onOpen }: { onOpen: () => void }) => {
   return (
-    <div className="mb-5 flex h-40 flex-col items-center justify-around rounded-xl border-1 border-gray-500 bg-gray-950 p-5">
-      <OAuth />
-      <Button onClick={() => setShowForm(true)} className="w-72 p-3 text-base">
-        Use email-id instead
-        <MoveRight className=" mx-2 inline-block scale-75" />
-      </Button>
-    </div>
+    <Card className="mb-5 h-40">
+      <CardBody className="flex flex-col items-center justify-around">
+        <OAuth />
+        <Button
+          onPress={onOpen}
+          variant="solid"
+          color="primary"
+          className="w-72 p-3 text-base"
+        >
+          Use email-id instead
+          <MoveRight className=" mx-2 inline-block scale-75" />
+        </Button>
+      </CardBody>
+    </Card>
   );
 };
 export default AuthCard;
