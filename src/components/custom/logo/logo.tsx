@@ -8,7 +8,6 @@ const Logo = () => {
       alt="RSSB"
       width={60}
       height={60}
-      priority
       className="block dark:hidden"
     />
   );

@@ -8,7 +8,6 @@ const DarkLogo = () => {
       alt="RSSB"
       width={60}
       height={60}
-      priority
       className="hidden dark:block"
     />
   );
