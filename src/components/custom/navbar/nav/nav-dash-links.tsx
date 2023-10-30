@@ -1,10 +1,10 @@
 import { navItems } from "@/constants/nav";
 import { NavbarContent, NavbarItem } from "@nextui-org/react";
 import Link from "next/link";
-import { useCallback } from "react";
+import { useMemo } from "react";
 
 const NavDashLinks = () => {
-  const displayNavItems = useCallback(
+  const displayNavItems = useMemo(
     () =>
       navItems.map((item, index) => (
         <NavbarItem key={`${item.title}-${index}`}>
@@ -22,7 +22,7 @@ const NavDashLinks = () => {
 
   return (
     <NavbarContent className="hidden lg:flex lg:space-x-5" justify="end">
-      {displayNavItems()}
+      {displayNavItems}
     </NavbarContent>
   );
 };
