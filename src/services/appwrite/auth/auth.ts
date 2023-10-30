@@ -15,7 +15,7 @@ class AuthService {
     this.clsName = AuthService.name;
   }
 
-  async createAccount({ email, password, name }: User) {
+  async createAccount({ email, password, name, username }: User) {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
@@ -23,6 +23,7 @@ class AuthService {
         password,
         name
       );
+      //TODO: use username and store users in database, with user id as slug, and also fileID of profile Picture which should be stored in Bucket storage
       if (userAccount) {
         // call another method: for login
         return this.login({ email, password });

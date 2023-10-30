@@ -1,122 +1,20 @@
 "use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Poppins } from "@/fonts";
-import { useForm } from "react-hook-form";
-
-import { RegisterFormSchema } from "@/models";
+import { AuthCard, RegisterForm } from "@/components/custom/auth";
+import Heading from "@/components/custom/heading";
+import MainContainer from "@/components/custom/main-container";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-type FormInput = z.infer<typeof RegisterFormSchema>;
-
-export default function Register() {
-  const form = useForm<FormInput>({
-    resolver: zodResolver(RegisterFormSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-    },
-  });
-
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  // const router = useRouter();
-
-  useEffect(
-    // useCallback(() => {
-    () => {
-      if (
-        form.formState.dirtyFields.username &&
-        form.formState.dirtyFields.email &&
-        form.formState.dirtyFields.password
-      ) {
-        setButtonDisabled(false);
-      } else setButtonDisabled(true);
-    },
-    // }, [buttonDisabled, setButtonDisabled, form.formState.dirtyFields]),
-    [form.formState.isDirty === true]
-  );
-
-  function onSubmit(values: FormInput) {
-    console.log(values);
-  }
-
-  // const signup = async () => {};
+const Register = () => {
+  const [showForm, setShowForm] = useState(false);
 
   return (
-    <main className="flex max-w-full flex-col items-center justify-self-center">
-      <h1
-        className={`my-10 text-center text-3xl font-bold ${Poppins.className}`}
-      >
-        Register
-      </h1>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-[80%] space-y-3 sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[30%]"
-        >
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="username" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="user@email.com" type="email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="password" type="password" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <MainContainer>
+      <Heading>Register</Heading>
 
-          <div className="!my-8 flex justify-center">
-            <Button type="submit" className="px-10" disabled={buttonDisabled}>
-              Submit
-            </Button>
-          </div>
-        </form>
-      </Form>
+      {/* //TODO: show Form in a BackDrop */}
+      {showForm ? <RegisterForm /> : <AuthCard setShowForm={setShowForm} />}
 
       <div>
         <p className="text-sm">
@@ -130,6 +28,7 @@ export default function Register() {
           </Link>
         </p>
       </div>
-    </main>
+    </MainContainer>
   );
-}
+};
+export default Register;
