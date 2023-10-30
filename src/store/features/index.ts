@@ -1,3 +1,3 @@
-import { htmlDarkClassSlice } from "./htmlDarkClassSlice";
+import { loginSlice } from "./loginSlice";
 
-export { htmlDarkClassSlice };
+export { loginSlice };

@@ -1,3 +1,3 @@
-import { useDarkClass } from "./useDarkClass";
+import { useScrollTop } from "./theme/useScrollTop";
 
-export { useDarkClass };
+export { useScrollTop };

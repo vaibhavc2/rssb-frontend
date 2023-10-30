@@ -1,7 +1,12 @@
-import { HTMLDarkClass } from "@/types";
+import { IsLoggedIn } from "@/types";
 import { create } from "zustand";
-import { htmlDarkClassSlice } from "./features";
+import { loginSlice } from "./features";
 
-export const useBoundStore = create<HTMLDarkClass>((...a) => ({
-  ...htmlDarkClassSlice(...a),
+// type Store = HTMLDarkClass & IsLoggedIn & IsThemeToggled;
+type Store = IsLoggedIn;
+
+const useBoundStore = create<Store>((...a) => ({
+  ...loginSlice(...a),
 }));
+
+export default useBoundStore;
