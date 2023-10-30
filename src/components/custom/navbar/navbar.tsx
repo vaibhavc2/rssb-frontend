@@ -35,7 +35,7 @@ export default function Navbar() {
         />
       </NavbarContent>
 
-      <MobileNavMenu />
+      <MobileNavMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </NavbarUI>
   );
 }

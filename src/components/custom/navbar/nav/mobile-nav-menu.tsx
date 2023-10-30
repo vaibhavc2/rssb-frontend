@@ -1,9 +1,19 @@
 import { menuItems } from "@/constants/nav";
 import { NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import Link from "next/link";
-import { useMemo } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 
-const MobileNavMenu = () => {
+const MobileNavMenu = ({
+  isMenuOpen,
+  setIsMenuOpen,
+}: {
+  isMenuOpen: boolean;
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const closeMenu = async () => {
+    setIsMenuOpen(false);
+  };
+
   const displayMenuItems = useMemo(
     () =>
       menuItems.map((item, index) => (
@@ -14,6 +24,7 @@ const MobileNavMenu = () => {
                 item.title === "Register" ? "text-yellow-500" : "foreground"
               }`}
               href={item.href}
+              onClick={closeMenu}
             >
               {item.title}
             </Link>
@@ -30,6 +41,13 @@ const MobileNavMenu = () => {
       )),
     [menuItems]
   );
-  return <NavbarMenu className="pt-16">{displayMenuItems}</NavbarMenu>;
+
+  return (
+    <>
+      {isMenuOpen && (
+        <NavbarMenu className="pt-16">{displayMenuItems}</NavbarMenu>
+      )}
+    </>
+  );
 };
 export default MobileNavMenu;
