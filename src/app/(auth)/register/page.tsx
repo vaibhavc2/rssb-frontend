@@ -13,9 +13,8 @@ const Register = () => {
     <MainContainer>
       <Heading>Register</Heading>
 
-      {/* //TODO: show Form in a BackDrop */}
-      {/* {showForm ? <RegisterForm /> : <AuthCard setShowForm={setShowForm} />} */}
       <AuthCard onOpen={onOpen} />
+
       <RegisterFormModal isOpen={isOpen} onOpenChange={onOpenChange} />
 
       <div>

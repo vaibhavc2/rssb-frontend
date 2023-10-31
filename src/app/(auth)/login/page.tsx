@@ -14,9 +14,8 @@ const Login = () => {
     <MainContainer>
       <Heading>Sign In</Heading>
 
-      {/* //TODO: show Form in a BackDrop */}
-      {/* {showForm ? <LoginForm /> : <AuthCard setShowForm={setShowForm} />} */}
       <AuthCard onOpen={onOpen} />
+
       <LoginFormModal isOpen={isOpen} onOpenChange={onOpenChange} />
 
       <div className="text-sm">
